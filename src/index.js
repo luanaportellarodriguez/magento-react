@@ -5,7 +5,7 @@ import store from './store';
 import './index.css';
 import app from '@magento/peregrine/lib/store/actions/app';
 import Adapter from '@magento/venia-ui/lib/components/Adapter';
-import FloatingButton from './components/FloatingButton';
+import PowerballGame from './components/Lottery';
 import { registerSW } from './registerSW';
 
 // server rendering differs from browser rendering
@@ -23,13 +23,13 @@ const configureLinks = links => [...links.values()];
 
 const tree = (
     <>
-        <Adapter
+        {/* <Adapter
             configureLinks={configureLinks}
             origin={origin}
             store={store}
             styles={styles}
-        />
-        <FloatingButton />
+        /> */}
+        <PowerballGame />
     </>
 );
 

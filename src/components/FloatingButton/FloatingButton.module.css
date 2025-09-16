@@ -1,0 +1,53 @@
+.floatingContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.floatingButton {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    border: 2px solid #e6c200;
+    border-radius: 8px;
+    color: #1a1a1a;
+    cursor: pointer;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    min-height: 40px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.floatingButton:hover {
+    background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
+    border-color: #d4af00;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.floatingButton:active {
+    background: linear-gradient(135deg, #e6c200 0%, #ffd700 100%);
+    border-color: #cc9900;
+    box-shadow: 0 2px 4px rgba(255, 215, 0, 0.6);
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .floatingContainer {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .floatingButton {
+        font-size: 12px;
+        min-height: 36px;
+        padding: 8px 16px;
+    }
+}

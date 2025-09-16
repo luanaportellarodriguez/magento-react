@@ -1,0 +1,57 @@
+.headerWrapper {
+    position: relative;
+}
+
+.customButtonContainer {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.headerButton {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    border: 2px solid #e6c200;
+    border-radius: 6px;
+    color: #1a1a1a;
+    cursor: pointer;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    min-height: 36px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+}
+
+.headerButton:hover {
+    background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
+    border-color: #d4af00;
+    box-shadow: 0 2px 6px rgba(255, 215, 0, 0.4);
+    transform: translateY(-1px);
+}
+
+.headerButton:active {
+    background: linear-gradient(135deg, #e6c200 0%, #ffd700 100%);
+    border-color: #cc9900;
+    box-shadow: 0 1px 2px rgba(255, 215, 0, 0.5);
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .customButtonContainer {
+        right: 10px;
+    }
+    
+    .headerButton {
+        font-size: 12px;
+        min-height: 32px;
+        padding: 6px 12px;
+    }
+}

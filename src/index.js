@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom'; // <-- para React 17
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import HomePage from './components/HomePage/HomePage';
@@ -18,4 +18,4 @@ const App = () => (
     </Router>
 );
 
-ReactDOM.render(<App />, document.getElementById('root')); // <- React 17
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -8,9 +8,12 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(10, 1fr 1fr);
     gap: 6px;
-    margin-bottom: 20px;
+}
+
+button{
+    margin: 0;
 }
 
 .numberButton {
@@ -18,11 +21,14 @@
     border-radius: 100%;
     width: 40px;
     height: 40px;
-    background: #ecf0f1;
+    background: transparent;
+    border: 1px solid #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: #505050;
+    margin: 0;
 }
 
 .selected {
@@ -32,7 +38,6 @@
 .actions {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
 }
 
 .playButton {
@@ -62,4 +67,8 @@
     margin-top: 20px;
     white-space: pre-line;
     text-align: center;
+}
+
+h3{
+    margin: 20px 0;
 }

@@ -11,9 +11,6 @@ const symbols = [
 
 function getRandomSymbol() {
     const weightedSymbols = [
-        symbols[0],
-        symbols[0],
-        symbols[0],
         symbols[1],
         symbols[1],
         symbols[1],
@@ -22,6 +19,9 @@ function getRandomSymbol() {
         symbols[2],
         symbols[3],
         symbols[3],
+        symbols[3],
+        symbols[4],
+        symbols[4],
         symbols[4]
     ];
     return weightedSymbols[Math.floor(Math.random() * weightedSymbols.length)];
@@ -31,11 +31,15 @@ const SlotGame = () => {
     const [reels, setReels] = useState([symbols[0], symbols[1], symbols[2]]);
     const [message, setMessage] = useState('');
     const [spinning, setSpinning] = useState(false);
+    const [anticipation, setAnticipation] = useState(false);
+    const [winHighlight, setWinHighlight] = useState(false);
 
     const spin = () => {
         if (spinning) return;
         setSpinning(true);
         setMessage('');
+        setAnticipation(false);
+        setWinHighlight(false); // reset do efeito de vitória ao clicar no Play
 
         const finalReels = [
             getRandomSymbol(),
@@ -45,26 +49,30 @@ const SlotGame = () => {
         const newReels = [...reels];
 
         finalReels.forEach((finalSymbol, i) => {
-            let count = 0;
             const interval = setInterval(() => {
-                // durante o spin, mostra símbolos aleatórios
                 newReels[i] = getRandomSymbol();
                 setReels([...newReels]);
-                count++;
             }, 100);
 
-            // para o reel em tempos diferentes
+            let stopTime = 1000 + i * 500;
+
             setTimeout(() => {
                 clearInterval(interval);
                 newReels[i] = finalSymbol;
                 setReels([...newReels]);
 
-                // se for o último reel que parou, checar resultado
+                // quando o SEGUNDO reel parar, checa anticipation
+                if (i === 1 && finalReels[0].char === finalReels[1].char) {
+                    setAnticipation(true);
+                }
+
+                // quando o TERCEIRO reel parar
                 if (i === finalReels.length - 1) {
+                    setAnticipation(false);
                     checkWin(finalReels);
                     setSpinning(false);
                 }
-            }, 1000 + i * 500); // reel 0 para em 1s, reel 1 em 1.5s, reel 2 em 2s
+            }, stopTime);
         });
     };
 
@@ -75,23 +83,33 @@ const SlotGame = () => {
         ) {
             if (reels[0].value > 0) {
                 setMessage(`🎉 Você ganhou ${reels[0].value} pontos!`);
-            } else {
-                setMessage('3 iguais, mas não valem nada 😅');
+                setWinHighlight(true); // ativa highlight de vitória
             }
         } else {
-            setMessage('Nada dessa vez...');
+            const sorteio = Math.floor(Math.random() * 2) + 1;
+
+            if (sorteio === 1) {
+                setMessage('Nada!');
+            } else {
+                setMessage('Nadinha!');
+            }
         }
     };
 
     return (
         <div className="slot-container">
             <div className="slot-content">
-                <h1>Slot Machine</h1>
                 <div className="slot-reels">
                     {reels.map((s, index) => (
                         <div
                             key={index}
-                            className="slot-symbol"
+                            className={`slot-symbol 
+                                ${
+                                    anticipation && index === 2
+                                        ? 'anticipation'
+                                        : ''
+                                } 
+                                ${winHighlight ? 'win' : ''}`}
                             style={{ backgroundColor: s.color }}
                         >
                             {s.char}
@@ -103,7 +121,7 @@ const SlotGame = () => {
                     onClick={spin}
                     disabled={spinning}
                 >
-                    {spinning ? 'Girando...' : 'Play'}
+                    {spinning ? 'GIRANDO' : '▶'}
                 </button>
                 <h2 className="slot-message">{message}</h2>
             </div>

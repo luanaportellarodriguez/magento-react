@@ -1,51 +1,21 @@
 import React from 'react';
-import { render } from 'react-dom';
-
-import store from './store';
+import ReactDOM from 'react-dom'; // <-- para React 17
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
-import app from '@magento/peregrine/lib/store/actions/app';
-import Adapter from '@magento/venia-ui/lib/components/Adapter';
-import PowerballGame from './components/Lottery';
-import { registerSW } from './registerSW';
+import HomePage from './components/HomePage/HomePage';
+import PowerballGame from './components/Lottery/Lottery';
+import Roulette from './components/Roulette/Roulette';
+import SlotGame from './components/Slot/Slot';
 
-// server rendering differs from browser rendering
-const isServer = !globalThis.document;
-
-// TODO: on the server, the http request should provide the origin
-const origin = isServer
-    ? process.env.MAGENTO_BACKEND_URL
-    : globalThis.location.origin;
-
-// on the server, components add styles to this set and we render them in bulk
-const styles = new Set();
-
-const configureLinks = links => [...links.values()];
-
-const tree = (
-    <>
-        {/* <Adapter
-            configureLinks={configureLinks}
-            origin={origin}
-            store={store}
-            styles={styles}
-        /> */}
-        <PowerballGame />
-    </>
+const App = () => (
+    <Router>
+        <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/lottery" component={PowerballGame} />
+            <Route path="/roulette" component={Roulette} />
+            <Route path="/slot" component={SlotGame} />
+        </Switch>
+    </Router>
 );
 
-if (isServer) {
-    // TODO: ensure this actually renders correctly
-    import('react-dom/server').then(({ default: ReactDOMServer }) => {
-        console.log(ReactDOMServer.renderToString(tree));
-    });
-} else {
-    render(tree, document.getElementById('root'));
-    registerSW();
-
-    globalThis.addEventListener('online', () => {
-        store.dispatch(app.setOnline());
-    });
-    globalThis.addEventListener('offline', () => {
-        store.dispatch(app.setOffline());
-    });
-}
+ReactDOM.render(<App />, document.getElementById('root')); // <- React 17

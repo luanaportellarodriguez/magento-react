@@ -96,7 +96,7 @@ const Roulette = () => {
 
             <div className="pointer" />
             <button onClick={spin} disabled={spinning}>
-                {spinning ? 'Girando...' : 'Play'}
+                {spinning ? 'Girando...' : '▶'}
             </button>
 
             {result && <h2 className="result">Você ganhou: {result}!</h2>}

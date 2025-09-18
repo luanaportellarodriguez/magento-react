@@ -94,7 +94,7 @@ const PowerballGame = () => {
 
             <div className={styles.actions}>
                 <button onClick={playGame} className={styles.playButton}>
-                    Play
+                    ▶
                 </button>
                 <button
                     onClick={chooseRandomNumbers}

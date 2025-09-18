@@ -41,7 +41,7 @@ button{
 }
 
 .playButton {
-    background: #3498db;
+    background: #333;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -51,8 +51,8 @@ button{
 
 .randomButton, .clearButton {
     background: white;
-    color: #3498db;
-    border: 1px solid #3498db;
+    color: #333;
+    border: 1px solid #333;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;

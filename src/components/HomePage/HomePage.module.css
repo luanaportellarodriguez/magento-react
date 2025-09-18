@@ -9,7 +9,7 @@
 
 .button {
     padding: 10px 20px;
-    background: #3498db;
+    background: #333;
     color: white;
     border: none;
     border-radius: 4px;
@@ -18,5 +18,5 @@
 }
 
 .button:hover {
-    background: #2980b9;
+    background: #252525;
 }
